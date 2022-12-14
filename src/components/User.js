@@ -4,6 +4,10 @@ import { Component } from "react";
 import classes from "./User.module.css";
 
 class User extends Component {
+  componentWillUnmount() {
+    // console.log("User will unmount"); // User will unmount (3 times for every component)
+  }
+
   render() {
     return <li className={classes.user}>{this.props.name}</li>;
   }
@@ -23,3 +27,9 @@ export default User;
 // 1.4 Need import Component from React and "extend" component ("class User extends Component")
 // 1.5 Add "this" to props ("{this.props.name}")
 // ~ ADDING A CLASS-BASED COMPONENT ~
+
+//
+
+// ~~ ComponentWillUnmount() ~~
+// Add "componentWillUnmount"
+// ~~ ComponentWillUnmount() ~~

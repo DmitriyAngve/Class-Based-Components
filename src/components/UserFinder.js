@@ -26,6 +26,12 @@ class UserFinder extends Component {
       searchTerm: "",
     };
   }
+
+  componentDidMount() {
+    // Send HTTP request...
+    this.setState({ filteredUsers: DUMMY_USERS });
+  }
+
   componentDidUpdate(prevProps, prevState) {
     if (prevState.searchTerm !== this.state.searchTerm)
       this.setState({
@@ -83,9 +89,21 @@ export default UserFinder;
 // STEP: 1
 // Initially "filteredUsers" will be an empty array.
 // Then when the Component is rendered for the first time I wanna send a request to the server.
+// I wanna fetch the users when this component is rendered for the first time, and this is what I do with "componentDidMount()"
+// In this component I could send your http request and handle all of that
+// And I would update my state and set state in this case to: "this.setState({ filteredUsers: DUMMY_USERS })"
+// This component runs only once, and here don't need "ifcheck" equivalent of that is useEffect with no dependencies or even with dependencies if would execute this function when the component is mounted for the first time, because it's treats the dependencies
 // ~~~ If we are loaded DUMMY_USERS from a database or a server ~~~
-
+// GO TO User.js ----->>>
 // ~ CONVERT USERFINDER COMPONENT TO CLASS-BASED AND LIFECYCLE METHODS ~
+
+//
+
+//~ CONTEXT AND CLASS-BASED COMPONENTS ~
+// The context consumer component can be used in both: functional and class-based components.
+// STEP: 1
+// In "render()" methods
+//~ CONTEXT AND CLASS-BASED COMPONENTS ~
 
 /*
 // const UserFinder = () => {
