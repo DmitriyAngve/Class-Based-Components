@@ -1,6 +1,7 @@
 import { Fragment, useState, useEffect, Component } from "react";
 import classes from "./UserFinder.module.css";
 import Users from "./Users";
+import UsersContext from "../store/users-context";
 
 const DUMMY_USERS = [
   { id: "u1", name: "Max" },
@@ -19,6 +20,7 @@ const DUMMY_USERS = [
 
 // Example if DUMMY_USERS are loaded from a database
 class UserFinder extends Component {
+  static contextType = UsersContext;
   constructor() {
     super();
     this.state = {
@@ -29,13 +31,13 @@ class UserFinder extends Component {
 
   componentDidMount() {
     // Send HTTP request...
-    this.setState({ filteredUsers: DUMMY_USERS });
+    this.setState({ filteredUsers: this.context.users });
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.searchTerm !== this.state.searchTerm)
       this.setState({
-        filteredUsers: DUMMY_USERS.filter((user) =>
+        filteredUsers: this.context.users.filter((user) =>
           user.name.toLowerCase().includes(this.state.searchTerm.toLowerCase())
         ),
       });
@@ -102,7 +104,9 @@ export default UserFinder;
 //~ CONTEXT AND CLASS-BASED COMPONENTS ~
 // The context consumer component can be used in both: functional and class-based components.
 // STEP: 1
-// In "render()" methods
+// 1.1 With useContext, you can listen to multiple context in one of the same component by calling use context and poining at different contexts. This will not be possible with class-based components because there you can only connect a class-based component to ONE context and do that by adding a STATIC property.
+// 1.2 Like that: "static contextType = UsersContext" with that you're telling React what this component should have access to the user's context.
+// "componentDidMount()" changes to: "this.setState({ filteredUsers: this.context.users })" and all other places
 //~ CONTEXT AND CLASS-BASED COMPONENTS ~
 
 /*

@@ -12,6 +12,12 @@ class Users extends Component {
     };
   }
 
+  componentDidUpdate() {
+    if (this.props.users.length === 0) {
+      throw new Error("No users provided!");
+    }
+  }
+
   toggleUsersHandler() {
     // this.state.showUsers = false; // NOT!
     this.setState((curState) => {
@@ -96,3 +102,7 @@ export default Users;
 
 // 4.6 Call the "super()". When I add the constructor to my class and extend to another class - need to call "super()", which calls the constructor of the super class so if the class were inheriting from
 // ~ WORKING WITH THE STATE AND EVENTS ~
+
+// ~ ~ Error Boundaries ~ ~
+//
+// ~ ~ Error Boundaries ~ ~
