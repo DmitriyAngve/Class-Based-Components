@@ -13,6 +13,12 @@ class Users extends Component {
   }
 
   componentDidUpdate() {
+    // try {
+    //   someCodeWhichMightFail();
+    // } catch (err) {
+
+    // }
+
     if (this.props.users.length === 0) {
       throw new Error("No users provided!");
     }
@@ -104,5 +110,11 @@ export default Users;
 // ~ WORKING WITH THE STATE AND EVENTS ~
 
 // ~ ~ Error Boundaries ~ ~
-//
+// Add simply "componentDidUpdate" that update lifecycle method, and in there if my users prop, which I'm getting, which is an array of users, has a length of zero and in which case I throw a new Error. Generating an error and I let this error bubble up the call stack
+// Let's prevent crashing the application:
+// STEP: 1
+// 1.1 I can't use "try-catch" - because that only works in places where we write regular JavaScript statements, and if I throw an error and I wanna handle it in a parent component, problem is that in this case in <Users> component is generating that error, but that is not regular JavaScript statements (instead JSX code). In other words error generate inside the "Users" Component.
+// 1.2 Need build and utilize an error boundary --> creat ErrorBoundary.js
+
+// GO TO ----->>> ErrorBoundary.js
 // ~ ~ Error Boundaries ~ ~
